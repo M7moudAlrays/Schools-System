@@ -56,14 +56,13 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
                             <div class="pull-left"><i class="ti-calendar"></i><span
-                                    class="right-nav-text">{{ trans('classes_trans.Classes') }}</span></div>
+                                    class="right-nav-text">{{ trans('My_Classes_trans.Classes') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('Classrooms.index')}}">{{ trans('classes_trans.Classes_list') }}</a> </li>
+                            <li> <a href="{{route('Classrooms.index')}}">{{ trans('My_Classes_trans.Classes_list') }}</a> </li>
                             <li> <a href="calendar-list.html">List Calendar</a> </li>
-                        </ul>
                     </li>
                     <!-- menu item todo-->
                     <li>
