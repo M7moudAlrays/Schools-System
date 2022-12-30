@@ -6,7 +6,7 @@ return
     'Classes' => 'الفصـــول الدراســـية' ,
     'Classes_list' => 'قائمة الفصـــول الدراســـية' ,
     'add_class'=> 'إضافة صف' ,
-    'delete_checkbox'=> '' ,
+    'delete_checkbox'=> 'إزالة الكل' ,
     'Search_By_Grade'=> 'بحث' ,
     'Name_class'=> 'إسم الصف بالعربية' ,
     'Name_class_en'=> 'إسم المرحلة بالإنجليزية' ,

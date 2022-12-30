@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\GradesController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use NunoMaduro\Collision\Contracts\Adapters\Phpunit\HasPrintableTestCaseName;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,13 @@ Route::get('welcome', function () {
 });
 
     
+Route::get('test', function ()
+{
+    return view('test') ;
+});
+
+
+
 Route::group(
     ['prefix' => LaravelLocalization::setLocale(), 
      'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']

@@ -17,7 +17,7 @@ class Classroom extends Model
     protected $fillable=['Name_Class','Grade_id'];
 
 
-    // علاقة بين الصفوف المراحل الدراسية لجلب اسم المرحلة في جدول الصفوف
+    // علاقة بين الصفوف والمراحل الدراسية لجلب اسم المرحلة في جدول الصفوف
 
     public function Grades()
     {
@@ -25,3 +25,19 @@ class Classroom extends Model
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

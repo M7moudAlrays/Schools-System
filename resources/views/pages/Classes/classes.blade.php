@@ -36,7 +36,7 @@
                 {{ trans('My_Classes_trans.add_class') }}
             </button>
 
-                <button type="button" class="button x-small" id="btn_delete_all">
+                <button type="button" class="btn btn-danger x-small" data-toggle="modal" id="btn_delete_all">
                     {{ trans('My_Classes_trans.delete_checkbox') }}
                 </button>
 
@@ -266,7 +266,6 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-
                                         </div>
 
                                         <div class="col">
@@ -293,12 +292,10 @@
                                     class="btn btn-success">{{ trans('Grades_trans.submit') }}</button>
                             </div>
 
-
                         </div>
                     </div>
                 </form>
             </div>
-
 
         </div>
 
