@@ -31,4 +31,8 @@ return
     'Delete'=>'Delete',
     'Close' => 'Close',
 
+    'Gender_now' => 'Grade Now' ,
+    'Class_now' => 'Class Now' ,
+    'teacher_now' => 'Teached Name Now'  ,
+
 ];

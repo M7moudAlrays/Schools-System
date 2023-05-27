@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {   
         Schema::table('my__parents', function(Blueprint $table) 
@@ -37,13 +32,25 @@ return new class extends Migration
         {
             $table->foreign('Gender_id')->references('id')->on('genders')->onDelete('cascade');
         }) ;
+
+        Schema::table('teacher_section' ,function (Blueprint $table)
+        {
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('section_id')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade') ;
+        }) ;
+
+        Schema::table('students' ,function (Blueprint $table)
+        {
+            $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('nationalitie_id')->references('id')->on('nationalities')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('blood_id')->references('id')->on('type__bloods')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Grade_id')->references('id')->on('Grades')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Classroom_id')->references('id')->on('class_rooms')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('parent_id')->references('id')->on('my__parents')->onDelete('cascade')->onUpdate('cascade');
+        }) ;
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('foreign_keys');

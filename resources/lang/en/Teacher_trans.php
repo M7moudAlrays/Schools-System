@@ -10,7 +10,9 @@ return [
     'Name_ar'=>'Name_ar',
     'Name_en'=>'Name_en',
     'specialization'=>'specialization',
+    'Specialization_now'=> 'specialization Now' ,
     'Gender'=>'Gender',
+    'Gender_now'=> 'Gender Now',
     'Joining_Date'=>'Joining_Date',
     'Address'=>'Address',
 ];

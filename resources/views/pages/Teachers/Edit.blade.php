@@ -73,8 +73,8 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="inputCity">{{trans('Teacher_trans.specialization')}}</label>
-                                    <select class="custom-select my-1 mr-sm-2" name="Specialization_id">
-                                        <option value="{{$Teachers->Specialization_id}}">{{$Teachers->specializations->Name}}</option>
+                                    <select class="custom-select my-1 mr-sm-2 " name="Specialization_id">
+                                        <option value="{{$Teachers->Specialization_id}}"  disabled> {{trans('Teacher_trans.Specialization_now')}} ( {{$Teachers->specializations->Name}} )</option>
                                         @foreach($specializations as $specialization)
                                             <option value="{{$specialization->id}}">{{$specialization->Name}}</option>
                                         @endforeach
@@ -86,9 +86,9 @@
                                 <div class="form-group col">
                                     <label for="inputState">{{trans('Teacher_trans.Gender')}}</label>
                                     <select class="custom-select my-1 mr-sm-2" name="Gender_id">
-                                        <option value="{{$Teachers->Gender_id}}">{{$Teachers->genders->Name}}</option>
+                                        <option value="{{$Teachers->Gender_id}}" disabled> {{trans('Teacher_trans.Gender_now')}}  ( {{$Teachers->genders->Name}} ) </option>
                                         @foreach($genders as $gender)
-                                            <option value="{{$gender->id}}">{{$gender->Name}}</option>
+                                            <option value="{{$gender->id}}"> {{$gender->Name}}</option>
                                         @endforeach
                                     </select>
                                     @error('Gender_id')

@@ -10,7 +10,9 @@ return [
     'Name_ar'=>'اسم المعلم باللغة العربية',
     'Name_en'=>'اسم المعلم باللغة الانجليزية',
     'specialization'=>'التخصص',
+    'Specialization_now'=> 'التخصص الحالي' ,
     'Gender'=>'النوع',
+    'Gender_now'=> 'النوع الحالي',
     'Joining_Date'=>'تاريخ التعين',
     'Address'=>'العنوان',
 

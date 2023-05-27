@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\GradesController;
 use App\Http\Controllers\SectionsController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -58,6 +59,10 @@ Route::group(
 
             Route::resource('Teachers',TeachersController::class) ;
 
+            Route::resource('Students', StudentController::class);
+
+            Route::get('Get_classrooms/{id}',[StudentController::class, 'Get_classrooms']) ;
+            Route::get('Get_Sections/{id}', [StudentController::class , 'Get_Sections']) ;
 
             // route::get('livewire-test',function()
             // {

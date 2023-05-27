@@ -51,21 +51,21 @@ class AddParent extends Component
     //firstStepSubmit
     public function firstStepSubmit()
     {
-    //    $this->validate([
-    //         'Email' => 'required|unique:my__parents,Email,'.$this->id,
-    //         'Password' => 'required',
-    //         'Name_Father' => 'required',
-    //         'Name_Father_en' => 'required',
-    //         'Job_Father' => 'required',
-    //         'Job_Father_en' => 'required',
-    //         'National_ID_Father' => 'required|unique:my__parents,National_ID_Father,' . $this->id,
-    //         'Passport_ID_Father' => 'required|unique:my__parents,Passport_ID_Father,' . $this->id,
-    //         'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-    //         'Nationality_Father_id' => 'required',
-    //         'Blood_Type_Father_id' => 'required',
-    //         'Religion_Father_id' => 'required',
-    //         'Address_Father' => 'required',
-    //     ]);
+        // $this->validate([
+        //     'Email' => 'required|unique:my__parents,Email,'.$this->id,
+        //     'Password' => 'required|min:4',
+        //     'Name_Father' => 'required',
+        //     'Name_Father_en' => 'required',
+        //     'Job_Father' => 'required',
+        //     'Job_Father_en' => 'required',
+        //     'National_ID_Father' => 'required|unique:my__parents,National_ID_Father,' . $this->id,
+        //     'Passport_ID_Father' => 'required|unique:my__parents,Passport_ID_Father,' . $this->id,
+        //     'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+        //     'Nationality_Father_id' => 'required',
+        //     'Blood_Type_Father_id' => 'required',
+        //     'Religion_Father_id' => 'required',
+        //     'Address_Father' => 'required',
+        // ]);
         $this->currentStep = 2;
     }
 

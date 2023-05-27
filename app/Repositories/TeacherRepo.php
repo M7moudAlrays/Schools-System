@@ -64,7 +64,7 @@ class TeacherRepo implements TeacherRepoInterface
             $Teachers->Joining_Date = $request->Joining_Date;
             $Teachers->Address = $request->Address;
             $Teachers->save();
-            toastr()->warning(trans('messages.Update'));
+            toastr()->success(trans('messages.Update'));
             return redirect()->route('Teachers.index');
         }
         catch (\Exception $e) {
