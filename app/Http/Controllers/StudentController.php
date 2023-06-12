@@ -37,9 +37,9 @@ class StudentController extends Controller
         return $this->student->Store_Student($request) ;
     }
 
-    public function show(Student $student)
+    public function show($id)
     {
-        //
+       return $this->student->show_Student($id) ;
     }
 
     public function edit($id)
@@ -66,4 +66,11 @@ class StudentController extends Controller
     {
         return $this->student->Get_Sections($id) ;
     }
+
+    public function Upload_attachment (Request $request) 
+    {
+        return $this->student->Upload_attachment($request) ;
+    }
 }
+
+

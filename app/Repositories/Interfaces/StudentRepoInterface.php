@@ -18,7 +18,18 @@ interface StudentRepoInterface
 
     public function Update_Student ($request) ;
 
+    public function show_Student ($id) ;
+
     public function Delete_Student($id) ;
+
+    //Upload_attachment
+    public function Upload_attachment($request);
+
+    // //Download_attachment
+    // public function Download_attachment($studentsname,$filename);
+
+    // //Delete_attachment
+    // public function Delete_attachment($request);
 }
 
 

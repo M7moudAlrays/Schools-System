@@ -47,22 +47,22 @@ Route::group(
             });
             
             route::resource('grades',GradesController::class) ;
+
             route::resource('Classrooms', ClassRoomController::class) ;
             route::Post('Filter_Classes', [ClassRoomController::class, 'Filter_Classes'])->name('Filter_Classes') ;
             route::delete('delete_all', [ClassRoomController::class, 'delete_all'])->name('delete_all') ;
 
             route::resource('Sections',SectionsController::class) ;
-
             route::get('classes/{id}', [SectionsController::class , 'getclasses']);
 
-            Route::view('add_parent','livewire.show_Form') ;
 
+            Route::view('add_parent','livewire.show_Form') ;
             Route::resource('Teachers',TeachersController::class) ;
 
             Route::resource('Students', StudentController::class);
-
             Route::get('Get_classrooms/{id}',[StudentController::class, 'Get_classrooms']) ;
             Route::get('Get_Sections/{id}', [StudentController::class , 'Get_Sections']) ;
+            Route::post('Upload_attachment' , [StudentController::class , 'Upload_attachment'])->name('Upload_attachment') ;
 
             // route::get('livewire-test',function()
             // {

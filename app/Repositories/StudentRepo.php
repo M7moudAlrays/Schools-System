@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Classroom;
 use App\Models\Gender;
 use App\Models\Grades;
+use App\Models\image;
 use App\Models\My_Parent;
 use App\Models\Nationalitie;
 use App\Models\Sections;
@@ -11,6 +12,7 @@ use App\Models\Student;
 use App\Models\Type_Blood;
 
 use App\Repositories\Interfaces\StudentRepoInterface;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentRepo implements StudentRepoInterface
@@ -34,6 +36,12 @@ class StudentRepo implements StudentRepoInterface
     return view('Pages.Students.add' ,$data) ;
   }
 
+  public function show_Student ($id)
+  {
+    $Student = Student::findOrfail($id) ;
+    return view ('pages.Students.show',compact('Student'));
+  }
+
   public function Get_classrooms($id)
   {
     return Classroom::where('grade_id' , $id)->pluck('Name_Class','id') ;
@@ -43,9 +51,12 @@ class StudentRepo implements StudentRepoInterface
   {
     return Sections::where('class_id' , $id)->pluck('Name_Section','id') ;
   }
-
+  
   public function Store_Student ($request)
   {
+
+    DB::beginTransaction() ;
+
     try 
     {
       $student = new Student();
@@ -62,8 +73,27 @@ class StudentRepo implements StudentRepoInterface
       $student->parent_id = $request->parent_id;
       $student->academic_year = $request->academic_year;
       $student->save();
-      toastr()->success(trans('messages.success'));
-      return redirect()->route('Students.create');
+
+       // insert image
+       if($request->hasfile('photos'))
+       {
+          foreach($request->file('photos') as $file)
+          {
+            $name = $file->getClientOriginalName();
+            $file->storeAs('attachments/students/'.$student->name, $file->getClientOriginalName(),'upload_attachments');
+
+            // insert in image_table
+            $images= new Image();
+            $images->filename=$name;
+            $images->imageable_id= $student->id;
+            $images->imageable_type = 'App\Models\Student';
+            $images->save();
+          }
+       }
+
+       DB::commit() ;// insert data
+       toastr()->success(trans('messages.success'));
+       return redirect()->route('Students.create');
     }
 
     catch (\Exception $e)
@@ -120,6 +150,25 @@ class StudentRepo implements StudentRepoInterface
     return redirect()->route('Students.index') ;
   }
 
+  public function Upload_attachment($request)
+  {
+      foreach($request->file('photos') as $file)
+      {
+          $name = $file->getClientOriginalName();
+          $file->storeAs('attachments/students/'.$request->student_name, $file->getClientOriginalName(),'upload_attachments');
+
+          // insert in image_table
+          $images= new image();
+          $images->filename=$name;
+          $images->imageable_id = $request->student_id;
+          $images->imageable_type = 'App\Models\Student';
+          $images->save();
+      }
+      toastr()->success(trans('messages.success'));
+      return redirect()->route('Students.show',$request->student_id);
+  }
+
+  
 }
 
 
