@@ -25,11 +25,11 @@ interface StudentRepoInterface
     //Upload_attachment
     public function Upload_attachment($request);
 
-    // //Download_attachment
-    // public function Download_attachment($studentsname,$filename);
+    //Download_attachment
+    public function Download_attachment($studentname,$filename);
 
     // //Delete_attachment
-    // public function Delete_attachment($request);
+    public function Delete_attachment($request);
 }
 
 

@@ -128,7 +128,7 @@
 
                                                     </td>
                                                 </tr>
-                                                {{-- @include('pages.Students.Delete_img') --}}
+                                                @include('pages.Students.Delete_img')
                                             @endforeach
                                             </tbody>
                                         </table>

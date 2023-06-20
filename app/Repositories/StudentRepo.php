@@ -54,7 +54,6 @@ class StudentRepo implements StudentRepoInterface
   
   public function Store_Student ($request)
   {
-
     DB::beginTransaction() ;
 
     try 
@@ -69,28 +68,27 @@ class StudentRepo implements StudentRepoInterface
       $student->Date_Birth = $request->Date_Birth;
       $student->Grade_id = $request->Grade_id;
       $student->Classroom_id = $request->Classroom_id;
-      $student->section_id = $request->section_id;
+       $student->section_id = $request->section_id;
       $student->parent_id = $request->parent_id;
       $student->academic_year = $request->academic_year;
       $student->save();
+       
+      // insert image 
+      if($request->hasfile('photos'))
+      {
+        foreach($request->file('photos') as $file)
+        {
+          $name = $file->getClientOriginalName();
+          $file->storeAs('attachments/students/'.$student->name, $file->getClientOriginalName(),'upload_attachments');           
 
-       // insert image
-       if($request->hasfile('photos'))
-       {
-          foreach($request->file('photos') as $file)
-          {
-            $name = $file->getClientOriginalName();
-            $file->storeAs('attachments/students/'.$student->name, $file->getClientOriginalName(),'upload_attachments');
-
-            // insert in image_table
-            $images= new Image();
-            $images->filename=$name;
-            $images->imageable_id= $student->id;
-            $images->imageable_type = 'App\Models\Student';
-            $images->save();
-          }
+          // insert in image_table
+          $images= new Image();
+          $images->filename=$name;
+          $images->imageable_id= $student->id;
+          $images->imageable_type = 'App\Models\Student';
+          $images->save();
+        }
        }
-
        DB::commit() ;// insert data
        toastr()->success(trans('messages.success'));
        return redirect()->route('Students.create');
@@ -168,7 +166,16 @@ class StudentRepo implements StudentRepoInterface
       return redirect()->route('Students.show',$request->student_id);
   }
 
-  
+  public function Download_attachment ($std_name ,$file_name)
+  {
+    return response()->download(public_path('attachments/students/'.$std_name.'/'.$file_name));
+  }
+
+  public function Delete_attachment($request)
+  {
+    
+  }
+
 }
 
 
