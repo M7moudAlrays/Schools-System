@@ -5,6 +5,9 @@ use App\Http\Controllers\GradesController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\Students\PromotionController ;
+use App\Http\Controllers\Students\GraduateController ;
+
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -54,17 +57,28 @@ Route::group(
 
             route::resource('Sections',SectionsController::class) ;
             route::get('classes/{id}', [SectionsController::class , 'getclasses']);
+             
 
+            Route::view('add_parent', 'livewire.show_Form') ;
 
-            Route::view('add_parent','livewire.show_Form') ;
-            Route::resource('Teachers',TeachersController::class) ;
+            Route::resource('Teachers', TeachersController::class) ;          
+
 
             Route::resource('Students', StudentController::class);
+
+            Route::post('Grad_stdent' , [StudentController::class , 'student_Grad']) ;
             Route::get('Get_classrooms/{id}',[StudentController::class, 'Get_classrooms']) ;
             Route::get('Get_Sections/{id}', [StudentController::class , 'Get_Sections']) ;
             Route::post('Upload_attachment' , [StudentController::class , 'Upload_attachment'])->name('Upload_attachment') ;
             Route::get('Download_attachment/{Std_Name}/{File_Name}' , [StudentController::class , 'Download_attachment'])->name('Download_attachment') ;          
-            Route::post('Delete_attachment' , [StudentController::class , 'Delete_attachment'])->name('Delete_attachment') ;          
+            Route::post('Delete_attachment' , [StudentController::class , 'Delete_attachment'])->name('Delete_attachment') ;
+
+            Route::group(['namespace' => 'Students'],function()
+            {
+                Route::resource('Promotion' , PromotionController::class);
+                Route::resource('Graduated' ,GraduateController::class) ;
+
+            }) ;
 
             // route::get('livewire-test',function()
             // {

@@ -4,9 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Blood_Type;
-use App\Models\Gender;
-use App\Models\Specialization;
+use App\Models\Blood_Type ;
+use App\Models\Gender ;
+use App\Models\Specialization ;
+// use App\Models\User ;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
             Nationality_Seeder::class ,
             Religion_Seeder::class ,
             Specialization_Seeder::class ,
-            Gender_Seeder::class 
+            Gender_Seeder::class ,
+            CreateAdminUserSeeder::class 
         ]) ;
     }
 }

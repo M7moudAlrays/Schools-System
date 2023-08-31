@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-    {{trans('main_trans.List_students')}}
+    {{trans('main_trans.list_students')}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    {{trans('main_trans.List_students')}}
+    {{trans('Main_trans.list_students')}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -39,8 +39,8 @@
                                             <th>{{trans('Students_trans.Processes')}}</th>
                                         </tr>
                                         </thead>
+                                        
                                         <tbody>
-                                            
                                         <?php  $i = 1 ; ?>
                                         @foreach($students as $student)
                                             <tr>
@@ -51,11 +51,12 @@
                                             <td>{{$student->grade->Name}}</td>
                                             <td>{{$student->classroom->Name_Class}}</td>
                                             <td>{{$student->section->Name_Section}}</td>
-                                                <td>
-                                                    <a href="{{route('Students.edit',$student->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_Student{{ $student->id }}" title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
-                                                    <a href="{{route('Students.show',$student->id)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-eye"></i></a>
-                                                </td>
+                                            <td>
+                                                <a href="{{route('Students.edit',$student->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_Student{{ $student->id }}" title="{{ trans('Students_trans.Delete_Student') }}"><i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Graduating_Student{{ $student->id }}" title="{{ trans('Students_trans.Graduate_Student') }}"><i class="fa fa-eye"></i></button>
+                                                <a href="{{route('Students.show',$student->id)}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+                                            </td>
                                             </tr>
                                         @include('pages.Students.Delete')
                                         @endforeach

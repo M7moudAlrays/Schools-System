@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('students', function (Blueprint $table) 
@@ -23,10 +28,16 @@ return new class extends Migration
             $table->bigInteger('section_id')->unsigned();
             $table->bigInteger('parent_id')->unsigned();
             $table->string('academic_year');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('students');

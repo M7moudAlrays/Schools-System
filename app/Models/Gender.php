@@ -12,6 +12,10 @@ class Gender extends Model
 
     use HasTranslations ;
     
+
+    protected $table = 'Genders';
+    protected $guarded=[] ;
     public $translatable =['Name'] ;
-    protected $fillable =['Name'] ;
+    public $timestamps = true;
+    
 }

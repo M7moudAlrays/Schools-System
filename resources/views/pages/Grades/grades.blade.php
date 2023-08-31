@@ -101,7 +101,7 @@
                                                             class="mr-sm-2">{{ trans('Grades_trans.stage_name_ar') }}
                                                             :</label>
                                                         <input id="Name" type="text" name="Name"
-                                                            class="form-control"
+                                                            class="form-control"      
                                                             value="{{ $Grade->getTranslation('Name', 'ar')}}"
                                                             required>
                                                         <input id="id" type="hidden" name="id" class="form-control"

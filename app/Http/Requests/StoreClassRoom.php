@@ -21,7 +21,7 @@ class StoreClassRoom extends FormRequest
     {
         return
         [
-            'List_Classes.*.Name' => 'required|:Class_rooms,Name_Class->ar'.$this->id ,
+            'List_Classes.*.Name' => 'required|unique:Class_rooms,Name_Class->ar,'.$this->id ,
             'List_Classes.*.Name_class_en' => 'required|unique:Class_rooms,Name_Class->en,'.$this->id ,
         ];
     }

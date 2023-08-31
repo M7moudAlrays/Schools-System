@@ -18,7 +18,7 @@ class StoreStudent extends FormRequest
             'name_ar' => 'required',
             'name_en' => 'required',
             'email' => 'required|email|unique:students,email,'.$this->id ,
-            'password' => 'required|string|min:6|max:10',
+            'password' => 'required|string|min:3|max:5',
             'gender_id' => 'required',
             'nationalitie_id' => 'required',
             'blood_id' => 'required',

@@ -16,10 +16,19 @@ class StoreGrades extends FormRequest
     {
         return 
         [
-            'Name' => 'required|unique:grades,name->ar'.$this->id , 
-            'Name_en' => 'required|unique:grades,name->en,'.$this->id ,
-            
-            // unique:grades,name->en,'.$this->id,
+            'Name' => 'required|unique:grades,Name->ar,'.$this->id ,
+            'Name_en' => 'required|unique:grades,Name->en,'.$this->id ,
+        ];
+    }
+
+    public function messages()
+    {
+        return 
+        [
+            'Name.required' => trans('validation.required'),
+            'Name.unique' => trans('validation.unique'),
+            'Name_en.required' => trans('validation.required'),
+            'Name_en.unique' => trans('validation.unique'),
         ];
     }
 

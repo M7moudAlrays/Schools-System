@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {   
         Schema::table('my__parents', function(Blueprint $table) 
@@ -36,7 +41,7 @@ return new class extends Migration
         Schema::table('teacher_section' ,function (Blueprint $table)
         {
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('section_id')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade') ;
+            $table->foreign('sections_id')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade') ;
         }) ;
 
         Schema::table('students' ,function (Blueprint $table)
@@ -49,8 +54,24 @@ return new class extends Migration
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('parent_id')->references('id')->on('my__parents')->onDelete('cascade')->onUpdate('cascade');
         }) ;
+
+        Schema::table('promotions', function (Blueprint $table) 
+        {
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('from_grade')->references('id')->on('Grades')->onDelete('cascade');
+            $table->foreign('from_Classroom')->references('id')->on('Class_rooms')->onDelete('cascade');
+            $table->foreign('from_section')->references('id')->on('sections')->onDelete('cascade');
+            $table->foreign('to_grade')->references('id')->on('Grades')->onDelete('cascade');
+            $table->foreign('to_Classroom')->references('id')->on('Class_rooms')->onDelete('cascade');
+            $table->foreign('to_section')->references('id')->on('sections')->onDelete('cascade');
+        });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('foreign_keys');

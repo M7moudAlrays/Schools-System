@@ -14,6 +14,8 @@ use App\Models\Type_Blood;
 use App\Repositories\Interfaces\StudentRepoInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 class StudentRepo implements StudentRepoInterface
 {
@@ -55,7 +57,6 @@ class StudentRepo implements StudentRepoInterface
   public function Store_Student ($request)
   {
     DB::beginTransaction() ;
-
     try 
     {
       $student = new Student();
@@ -68,7 +69,7 @@ class StudentRepo implements StudentRepoInterface
       $student->Date_Birth = $request->Date_Birth;
       $student->Grade_id = $request->Grade_id;
       $student->Classroom_id = $request->Classroom_id;
-       $student->section_id = $request->section_id;
+      $student->section_id = $request->section_id;
       $student->parent_id = $request->parent_id;
       $student->academic_year = $request->academic_year;
       $student->save();
@@ -130,6 +131,7 @@ class StudentRepo implements StudentRepoInterface
       $student->parent_id = $request->parent_id;
       $student->academic_year = $request->academic_year;
       $student->save() ;
+      
       toastr()->success(trans('messages.Update'));
       return redirect()->route('Students.index');
     }
@@ -173,9 +175,25 @@ class StudentRepo implements StudentRepoInterface
 
   public function Delete_attachment($request)
   {
-    
+     Storage::disk('upload_attachments')->delete('attachments/students/'.$request->student_name.'/'.$request->filename);
+
+     // Delete in data
+     image::where('id',$request->id)->where('filename',$request->filename)->delete();
+     toastr()->error(trans('messages.Delete'));
+     return redirect()->route('Students.show',$request->student_id);
   }
 
+  public function show_file($studentname , $file_name)
+
+  {
+      $files = Storage::disk('upload_attachments')->getDriver()->getAdapter()->applyPathPrefix($$request->student_name .'/'.$request->file_name);
+      return response()->file($files) ;
+  }
+
+  public function student_Grad($req) 
+  {
+    return $req->id ;
+  }
 }
 
 

@@ -30,7 +30,8 @@ class ClassRoomController extends Controller
 
         try {
 
-            // $validated = $request->validated();
+            $validated = $request->validated();
+            
             foreach ($List_Classes as $List_Class) 
             {
                 $My_Classes = new Classroom();

@@ -28,8 +28,14 @@ interface StudentRepoInterface
     //Download_attachment
     public function Download_attachment($studentname,$filename);
 
-    // //Delete_attachment
+    //Delete_attachment
     public function Delete_attachment($request);
+
+    //Show_attachment
+    public function show_file($studentname , $file_name) ;
+
+    //Grad Student
+    public function student_Grad($studentname) ;
 }
 
 

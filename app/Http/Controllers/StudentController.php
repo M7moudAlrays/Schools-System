@@ -77,9 +77,21 @@ class StudentController extends Controller
         return $this->student->Download_attachment($stud_name ,$file_name) ;
     }
 
+    public function View_file($std_name ,$file_name)
+    {
+       $files = Storage::disk('upload_attachments')->getDriver()->getAdapter()->applyPathPrefix('attachments/students/'.$std_name.'/'.$filename) ;
+       return response()->file($files) ;
+    }
+
     public function Delete_attachment (Request $request)
     {
-        return $request ;
+        return $this->student->Delete_attachment($request) ;
+    }
+
+    
+    public function student_Grad(Request $request) 
+    {
+        return $this->student->student_Grad($request) ;
     }
 }
 
